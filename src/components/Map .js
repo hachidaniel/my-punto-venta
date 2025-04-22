@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import 'leaflet/dist/leaflet.css';
@@ -13,16 +13,21 @@ L.Icon.Default.mergeOptions({
 });
 
 const Map = (array) => {
+
     const mapRef = useRef(null);
-    const position = [51.505, -0.09];
+    const position = [19.544392512453317, -99.21342650112786];
     var cordenadas = [];
     var datosPuntoVenta = [];
     for (var i = 0; i < array.array.length; i++) {
-        cordenadas.push([array.array[i].latitud, array.array[i].longitud]);
+        cordenadas.push([parseFloat(array.array[i].latitud), parseFloat(array.array[i].longitud)]);
         datosPuntoVenta.push({ id: array.array[i].id, descripcion: array.array[i].descripcion, venta: array.array[i].venta, zona: array.array[i].zona, latitud: array.array[i].latitud, longitud: array.array[i].longitud });
     }
+        
+    useEffect(() => {
+        clearMap()
+      }, []);
     
-
+    console.log(cordenadas)
     const icon = L.icon({
         iconSize: [25, 41],
         iconAnchor: [10, 41],
@@ -34,7 +39,7 @@ const Map = (array) => {
     const MapEvents = () => {
         useMapEvents({
           click(e) {
-            // setState your coords here
+             // setState your coords here
             // coords exist in "e.latlng.lat" and "e.latlng.lng"
             console.log(e.latlng.lat);
             console.log(e.latlng.lng);
@@ -52,14 +57,14 @@ const Map = (array) => {
                     document.getElementById('btnAbrimodal').click();  
                 }, 100)
             }
-
-            
           },
         });
         return false;
     }
+    console.log(datosPuntoVenta[0])
     function MultipleMarkers() {
         return datosPuntoVenta.map((coordinata, index) => {
+           
             return (
                 <Marker key={index} position={[coordinata.latitud, coordinata.longitud]} icon={icon} ref={mapRef} style={{height: "100vh", width: "100vw"}}>
                     <Popup key={index}>
@@ -82,18 +87,27 @@ const Map = (array) => {
             </Popup>;
         });
     }
+    function clearMap() {
+        
+        
 
-    //console.log(array.array)
+        
+  
+      }
+    //
     return (
-        <MapContainer center={[19.543845710688867, -99.21348691899428]} zoom={13} style={{ height: '500px' }}>
+        <MapContainer center={position} zoom={3} style={{height: "43vh", width: "350px"}}>
             <TileLayer
                 attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <MultipleMarkers />
-            <MapEvents />
+           
+           
+       
         </MapContainer>
     );
 };
 
 export default Map;
+
