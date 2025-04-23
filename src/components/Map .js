@@ -45,17 +45,7 @@ const Map = (array) => {
             console.log(e.latlng.lng);
             
             if(array.array.length == 0){
-                const elementLatitud = document.getElementById('floatLatitud');
-                elementLatitud.value = e.latlng.lat;
-                const elementLongitud = document.getElementById('floatLongitud');
-                elementLongitud.value = e.latlng.lng;
-                document.getElementById('btnCerrar').click();
-                document.getElementById('btnCerrarMap').click();
-                const elementoimput = document.getElementById('inpValormap');
-                elementoimput.value = '1'
-                setTimeout(() => {
-                    document.getElementById('btnAbrimodal').click();  
-                }, 100)
+           
             }
           },
         });
@@ -96,7 +86,7 @@ const Map = (array) => {
       }
     //
     return (
-        <MapContainer center={position} zoom={3} style={{height: "43vh", width: "350px"}}>
+        <MapContainer center={position} zoom={3} style={{height: "43vh", width: "390"}}>
             <TileLayer
                 attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
