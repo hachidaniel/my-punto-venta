@@ -91,7 +91,7 @@ const PuntoVenta = () => {
                 <div className='container-fluid'>
 
                     <div className='row mt-3'>
-                        <div className='col-md-2 offset-md-2'>
+                        <div className='col-md-2 offset-md-0'>
                             <div className='d-grid mx-auto'>
                                 <button id='btnAbrimodal' onClick={() => openModal(1)} type='button' className='btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#modalPuntoVentas' >
                                     <i className='fa-solid fa-circle-plus'></i> Agregar
@@ -100,8 +100,8 @@ const PuntoVenta = () => {
                         </div>
                     </div>
                     <div className='row mt-3'>
-                        <div className='col-12 col-lg-8 offset-0 offset-lg-2 '>
-                            <div className='table-responsive'>
+                        <div className='col-12 col-lg-12'>
+                            <div className='table-responsive-lg'>
                                 <table className='table table-bordered table-hover'>
                                     <thead>
                                         <tr>
@@ -149,7 +149,7 @@ const PuntoVenta = () => {
 
                     </div>
                     <div className='row mt-3'>
-                        <div className='col-12 col-lg-4 offset-0  offset-lg-2' >
+                        <div className='col-12 col-lg-4 offset-0  offset-lg-1' >
                             <div className="card text-dark bg-light mb-3">
                             <div className="card-header">Mapa punto de venta</div>
                                 <div className="card-body">
